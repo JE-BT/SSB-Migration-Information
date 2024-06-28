@@ -1,0 +1,72 @@
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+const Infographic = () => {
+  const moveData = [
+    { type: 'Within municipalities', count: 456700 },
+    { type: 'Between municipalities', count: 260300 },
+    { type: 'Immigrations', count: 54000 },
+    { type: 'Emigrations', count: 34300 },
+  ];
+
+  const distanceData = [
+    { distance: '0-49 km', percentage: 79 },
+    { distance: '50-199 km', percentage: 9 },
+    { distance: '200+ km', percentage: 12 },
+  ];
+
+  return (
+    <div className="p-4 bg-gray-100 rounded-lg">
+      <h2 className="text-2xl font-bold mb-4 text-center">Moving Patterns in Norway 2021</h2>
+      
+      <div className="mb-6">
+        <h3 className="text-xl font-semibold mb-2">Number of Moves by Type</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={moveData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="type" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="count" fill="#8884d8" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      
+      <div className="mb-6">
+        <h3 className="text-xl font-semibold mb-2">Distance of Moves (including within municipalities)</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={distanceData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="distance" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="percentage" fill="#82ca9d" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white p-4 rounded shadow">
+          <h4 className="font-bold mb-2">Key Facts</h4>
+          <ul className="list-disc list-inside">
+            <li>64% of domestic moves were within municipalities</li>
+            <li>Most moves occur between ages 20-34</li>
+            <li>Net immigration from Poland was at 2015 levels</li>
+          </ul>
+        </div>
+        <div className="bg-white p-4 rounded shadow">
+          <h4 className="font-bold mb-2">Regional Insights</h4>
+          <ul className="list-disc list-inside">
+            <li>Viken had the largest domestic migration surplus</li>
+            <li>Oslo had the largest domestic migration deficit</li>
+            <li>70% of moves from Oslo were within the city</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Infographic;
